@@ -1,57 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+
+// import your route components too
+import Main from "./views/pages/main/Main";
+import Page404 from "./views/pages/404/Page404";
+import Council from "./views/pages/council/Council";
+import SetCouncil from "./views/pages/setCouncil/SetCouncil";
+import Home from "./views/pages/home/Home";
+
+import './views/styles/app.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <GoogleOAuthProvider clientId="572413208285-plfibouhajfkd16mk0gvvlsp2kaath04.apps.googleusercontent.com">
+    <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<Page404 />} />
+        <Route path="/" element={<Main />}>
+          <Route index element={<Home />} />
+          <Route path="council/:councilId" element={<Council />}>
+            <Route path="set-council" element={<SetCouncil />} />
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </Provider>
+    </GoogleOAuthProvider>
   );
 }
 
