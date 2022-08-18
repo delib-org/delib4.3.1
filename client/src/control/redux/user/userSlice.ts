@@ -3,12 +3,12 @@ import { RootState, AppThunk } from "../../../model/store";
 import { User, UserSchema } from "../../../model/userModelC";
 
 export interface UserState {
-  user: User | undefined;
+  user: User | null;
   status: "idle" | "loading" | "failed";
 }
 
 const initialState: UserState = {
-  user: undefined,
+  user: null,
   status: "idle",
 };
 
