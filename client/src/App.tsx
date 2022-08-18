@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { store } from "./app/store";
+import { store } from "./model/store";
 import { Provider } from "react-redux";
 
 // import your route components too
