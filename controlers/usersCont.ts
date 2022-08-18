@@ -1,57 +1,45 @@
-import User from "../model/usersModel";
+import UserModel, { User } from "../model/usersModel";
+import jwt_decode from "jwt-decode";
 
-export async function getAllUsers(req, res) {
-    try {
+export async function loginUser(req, res) {
+  try {
+    const { credential } = req.body;
+    if (!credential) throw new Error("No cre ");
 
-        const users = await User.find({})
-        res.send({ ok: true, users });
-    } catch (error) {
-        console.log(error.error);
-        res.send({ error: error.message });
-    }
-}
+    const userInfo: any = jwt_decode(credential);
+    const userId = userInfo.sub;
+    if (!userId) throw new Error("No user iid in credential");
+    const {
+      sub,
+      given_name,
+      family_name,
+      email,
+      email_verified,
+      name,
+      picture,
+    } = userInfo;
+    console.log({
+      sub,
+      given_name,
+      family_name,
+      email,
+      email_verified,
+      name,
+      picture,
+    });
 
-export const addUser = async (req, res) => {
-    try {
-        let { username, password } = req.body;
-
-        const newUser = new User({ username, password });
-        const result = await newUser.save();
-
-        res.send({ result });
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}
-
-export const updateUser = async (req, res) => {
-    try {
-      const { userId, role } = req.body;
-      if (userId && role) {
-        const users = await User.updateOne({_id:userId},{role: role})
-        res.send({ ok: true, users });
-      } else {
-        throw new Error("userId or role is missing");
+    const UserDB = await UserModel.findOneAndUpdate(
+      { uid: userId },
+      { uid:sub, given_name, family_name, email, email_verified, name, picture },
+      {
+        new: true,
+        upsert: true
       }
-    } catch (error) {
-      console.log(error.error);
-      res.send({ error: error.message });
-    }
+    );
+    console.log(UserDB);
+    res.send({ ok: true, user: UserDB });
+  } catch (error) {
+    console.log(error.error);
+    res.send({ error: error.message });
   }
-
-  export const deleteUser = async (req, res) => {
-    try {
-      const { userId } = req.body;
-      console.log(userId)
-      if (userId) {
-        const users = await User.deleteOne({_id:userId})
-        res.send({ ok: true, users });
-      } else {
-        throw new Error("userId or role is missing");
-      }
-    } catch (error) {
-      console.log(error.error);
-      res.send({ error: error.message });
-    }
-  }
+}

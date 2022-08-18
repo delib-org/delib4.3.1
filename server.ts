@@ -20,7 +20,7 @@ mongoose.connect(
 
 
 import usersRoute from "./routes/usersRoute";
-app.use("/users", usersRoute);
+app.use("/api/users", usersRoute);
 
 
 
