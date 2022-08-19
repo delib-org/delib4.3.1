@@ -20,3 +20,7 @@ export function updateArrayBy_ID(
       return currentArray;
     }
   }
+
+  export function uid(){
+    return `id_${Math.random()}`
+  }
