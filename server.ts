@@ -12,7 +12,7 @@ const mongodb_uri = process.env.MONGODB_URI;
 mongoose.connect(
   mongodb_uri
 ).then(res=>{
-  console.log("Connect to DB");
+  console.log("🔥 Connect to DB 🗄");
 }).catch(err=>{
   console.info('At mongoose.connect:')
   console.error(err.message)
@@ -28,5 +28,5 @@ app.use("/api/users", usersRoute);
 
 
 app.listen(port, () => {
-  return console.log(`Server is listening at http://localhost:${port}`);
+  return console.log(`🔥 Server is listening at http://localhost:${port} ⚡`);
 });
