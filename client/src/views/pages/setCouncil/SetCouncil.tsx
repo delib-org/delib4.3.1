@@ -1,11 +1,12 @@
-import axios from "axios";
+import { useEffect } from "react";
 import {
   useAppDispatch,
   useGetUser,
   useIsLogged,
 } from "../../../control/hooks";
-import { setCouncilAsync } from "../../../control/redux/councilsAPI";
-import { addCouncil } from "../../../control/redux/councilsSlice";
+import { setCouncilAsync } from "../../../control/redux/councils/councilsAPI";
+import { addCouncil } from "../../../control/redux/councils/councilsSlice";
+import { getUserAsync } from "../../../control/redux/user/usersAPI";
 
 //models
 import { Stages } from "../../../model/stagesModelC";
@@ -17,14 +18,20 @@ const SetCouncil = () => {
   const dispatch = useAppDispatch();
   const isLogged = useIsLogged();
   const user = useGetUser();
+
+  useEffect(() => {
+    dispatch(getUserAsync());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   async function handleSubmit(ev: any) {
     ev.preventDefault();
     try {
       if (isLogged === false) throw new Error("user is no logged");
-      if(!user) throw new Error('User was not found');
-      
+      if (!user) throw new Error("User was not found");
+
       let { title, description, imgs, stages } = ev.target.elements;
-      console.log({ title, description, imgs, stages });
+
       title = title.value;
       description = description.value;
       //  const stagesArray:Stages[] = [];
@@ -41,10 +48,7 @@ const SetCouncil = () => {
       // const {data} = await axios.post('/api/councils/add-council',{title, description, stages:stagesArray});
       // dispatch(addCouncil({ title, description, stages: stagesArray }));
       dispatch(
-        setCouncilAsync({
-          council: { title, description, stages: stagesArray },
-          user,
-        })
+        setCouncilAsync({ title, description, stages: stagesArray })
       );
     } catch (error) {
       console.error(error);
@@ -64,7 +68,7 @@ const SetCouncil = () => {
           {stages.map((stage, i) => {
             if (stage !== Stages.INTRO) {
               return (
-                <p>
+                <p key={`${i}-stages`}>
                   <label htmlFor={stage}>{stage}</label>
                   <input
                     type="checkbox"

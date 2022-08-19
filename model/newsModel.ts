@@ -1,20 +1,25 @@
 import mongoose from "mongoose";
+
 import { CouncilSchema, Stages } from "./councilModel";
-import UserModel from "./usersModel";
+import UserModel, { UserSchema } from "./usersModel";
 
 const NewsItemSchema = new mongoose.Schema({
     creator:{
-        type:UserModel,
+        type:UserSchema,
         required:true
     },
     council:{
         type:CouncilSchema,
         required:true
     },
-    CouncilStage:{
+    councilStage:{
         type:String,
         enum:Stages,
         default:Stages.INTRO
+    },
+    message:{
+        type:String,
+        required:true
     },
     time:{
         type:Date,

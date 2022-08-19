@@ -10,7 +10,7 @@ export interface User{
   uid: string,
 }
 
-const UserSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
   email_verified: Boolean,
   email: String,
   family_name: String,

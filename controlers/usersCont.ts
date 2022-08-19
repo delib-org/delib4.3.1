@@ -40,8 +40,42 @@ export async function loginUser(req, res) {
 
     const encodedUser = jwt.encode(sub, jwtSecret);
 
-    res.cookie("userInfo", encodedUser, { httpOnly: true, maxAge: 1000000 });
+    res.cookie("userInfo", encodedUser, { httpOnly: true});
     res.send({ ok: true, user });
+  } catch (error) {
+    console.log(error.error);
+    res.send({ error: error.message });
+  }
+}
+
+export async function getUser(req:any, res:any) {
+  console.log('get user')
+  try {
+    if(!req.userId) throw new Error('User is missing in request');
+  
+    const userDB = await UserModel.findOne({uid:req.userId});
+    console.log('userDB',userDB)
+    const {uid, name, given_name, family_name, picture, email, email_verified} = userDB;
+    if(!userDB) throw new Error(`no user with id ${req.userId} in DB`);
+    res.send({ user:  {uid, name, given_name, family_name, picture,email, email_verified} });
+  } catch (error) {
+    console.log(error.error);
+    res.send({ error: error.message });
+  }
+}
+
+export function getUserFroomCookie(req:any, res:any, next:Function) {
+  try {
+    const { userInfo } = req.cookies;
+    if (!userInfo) throw new Error("No user info in cookies");
+
+    const userId = jwt.decode(userInfo, jwtSecret);
+    console.log('userId',userId);
+
+    req.userId = userId;
+   
+
+    next();
   } catch (error) {
     console.log(error.error);
     res.send({ error: error.message });

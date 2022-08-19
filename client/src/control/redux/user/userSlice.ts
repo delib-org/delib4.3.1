@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../../model/store";
 import { User, UserSchema } from "../../../model/userModelC";
+import { getUserAsync } from "./usersAPI";
 
 export interface UserState {
   user: User | null;
@@ -34,6 +35,22 @@ export const userSlice = createSlice({
         console.error(error);
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        if(action.payload){
+          state.user = action.payload;
+        }
+        
+      })
+      .addCase(getUserAsync.rejected, (state) => {
+        state.status = 'failed';
+      });
   },
 });
 

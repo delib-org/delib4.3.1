@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RootState, AppThunk } from "../../model/store";
+import { RootState, AppThunk } from "../../../model/store";
 
 
-import { CouncilSchema,Council } from "../../model/councilModelC";
-import { updateArrayBy_ID } from "../helpers";
+import { CouncilSchema,Council } from "../../../model/councilModelC";
+import { updateArrayBy_ID } from "../../helpers";
 
 
 //api
