@@ -12,7 +12,7 @@ import { getUserAsync } from "../../../control/redux/user/usersAPI";
 import { Stages } from "../../../model/stagesModelC";
 
 const stages = Object.values(Stages);
-console.log(stages);
+
 
 const SetCouncil = () => {
   const dispatch = useAppDispatch();

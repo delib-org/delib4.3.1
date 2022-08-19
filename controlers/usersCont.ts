@@ -9,7 +9,7 @@ export async function loginUser(req, res) {
   try {
     const { credential } = req.body;
     if (!credential) throw new Error("No cre ");
-    console.log("sdgsdgsdgsdg");
+   
     const userInfo: any = jwt_decode(credential);
     const userId = userInfo.sub;
     if (!userId) throw new Error("No user iid in credential");
@@ -43,25 +43,25 @@ export async function loginUser(req, res) {
     res.cookie("userInfo", encodedUser, { httpOnly: true});
     res.send({ ok: true, user });
   } catch (error) {
-    console.log(error.error);
+    console.error(error);
     res.send({ error: error.message });
   }
 }
 
 export async function getUser(req:any, res:any) {
-  console.log('get user')
+  
   try {
     if(!req.userId) throw new Error('User is missing in request');
   
     const userDB = await getUserFromDB(req.userId);
     if(!userDB) throw new Error('Couldnt find user in DB');
-    
-    console.log('userDB',userDB)
+
+
     const {uid, name, given_name, family_name, picture, email, email_verified} = userDB;
     if(!userDB) throw new Error(`no user with id ${req.userId} in DB`);
     res.send({ user:  {uid, name, given_name, family_name, picture,email, email_verified} });
   } catch (error) {
-    console.log(error.error);
+    console.error(error);
     res.send({ error: error.message });
   }
 }
@@ -72,14 +72,12 @@ export function getUserFroomCookie(req:any, res:any, next:Function) {
     if (!userInfo) throw new Error("No user info in cookies");
 
     const userId = jwt.decode(userInfo, jwtSecret);
-    console.log('userId',userId);
 
     req.userId = userId;
    
-
     next();
   } catch (error) {
-    console.log(error.error);
+    console.error(error);
     res.send({ error: error.message });
   }
 }

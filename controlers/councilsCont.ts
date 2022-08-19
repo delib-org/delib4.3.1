@@ -6,7 +6,6 @@ export async function setCouncil(req, res) {
   try {
     const { council} = req.body;
    
-    console.log('req.userId',req.userId)
     if (!council) throw new Error("No council in body");
     if(!req.userId) throw new Error('No creator in req.user');
 
@@ -29,8 +28,6 @@ export async function setCouncil(req, res) {
      
       councilDB = await CouncilModel.create(council);
     }
-
-    console.log(councilDB);
 
     await NewsItemModel.create({
       council:councilDB,
