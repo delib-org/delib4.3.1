@@ -50,3 +50,18 @@ export async function setCouncil(req, res) {
     res.send({ error: error.message });
   }
 }
+
+export async function getCouncil(req:any, res:any){
+  try {
+    const {councilId} = req.query;
+    if(!councilId) throw new Error('no councilId in query');
+
+    const councilDB = await CouncilModel.findById(councilId);
+    if(!councilDB) throw new Error(`Couldnt find council ${councilId} in DB`);
+    res.send({council:councilDB});
+
+  } catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+  }
+}
