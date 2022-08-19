@@ -22,6 +22,9 @@ mongoose.connect(
 import usersRoute from "./routes/usersRoute";
 app.use("/api/users", usersRoute);
 
+import councilsRoute from './routes/councilsRoute';
+app.use('/api/councils', councilsRoute);
+
 
 
 

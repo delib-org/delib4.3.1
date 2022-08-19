@@ -10,24 +10,24 @@ import Council from "./views/pages/council/Council";
 import SetCouncil from "./views/pages/setCouncil/SetCouncil";
 import Home from "./views/pages/home/Home";
 
-import './views/styles/app.scss';
+import "./views/styles/app.scss";
 
 function App() {
   return (
     <GoogleOAuthProvider clientId="572413208285-plfibouhajfkd16mk0gvvlsp2kaath04.apps.googleusercontent.com">
-    <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<Page404 />} />
-        <Route path="/" element={<Main />}>
-          <Route index element={<Home />} />
-          <Route path="council/:councilId" element={<Council />}>
-            <Route path="set-council" element={<SetCouncil />} />
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-    </Provider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Page404 />} />
+           
+            <Route path="/" element={<Main />}>
+              <Route index element={<Home />} />
+              <Route path="set-council" element={<SetCouncil />} />
+              <Route path="council/:councilId" element={<Council />}></Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </GoogleOAuthProvider>
   );
 }

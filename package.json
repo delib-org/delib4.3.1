@@ -17,6 +17,7 @@
     "cryptr": "^6.0.3",
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
+    "joi": "^17.6.0",
     "jwt-decode": "^3.1.2",
     "jwt-simple": "^0.5.6",
     "mongoose": "^6.2.6"

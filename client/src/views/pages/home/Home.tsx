@@ -1,8 +1,15 @@
-import React from 'react'
+import { useIsLogged } from "../../../control/hooks";
+
+//components
+import HomeIntro from "../home/HomeIntro";
+import HomeMain from "./HomeMain";
 
 const Home = () => {
+  const isLogged = useIsLogged();
   return (
-    <div>Home</div>
+    <div className="page">
+      {isLogged?<HomeMain/>:<HomeIntro/>}
+    </div>
   )
 }
 

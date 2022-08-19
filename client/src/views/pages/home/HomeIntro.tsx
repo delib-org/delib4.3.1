@@ -3,6 +3,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useAppDispatch } from "../../../control/hooks";
 import { setUser } from "../../../control/redux/user/userSlice";
+import { Link } from "react-router-dom";
 
 const HomeIntro = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ const HomeIntro = () => {
         </a>
         <YouTube videoId="p6JoKmMJi_c" />
       </header>
+      <Link to='/set-council'>Set Council</Link>
       <GoogleLogin
         onSuccess={handleGoogleLogin}
         onError={() => {
