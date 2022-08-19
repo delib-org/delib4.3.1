@@ -3,6 +3,7 @@ import Joi from 'joi';
 
 //schemas
 import { ImgSchema, ImgSchemaJoi } from "./imgModel";
+import { UserSchema } from "../client/src/model/userModelC";
 
 export enum Stages {
     INTRO = 'intro',
@@ -11,7 +12,7 @@ export enum Stages {
     OPTIONS = 'options'
 }
 
-const CouncilSchema = new mongoose.Schema({
+export const CouncilSchema = new mongoose.Schema({
     title:{
         type:String,
         required:true,
@@ -27,6 +28,10 @@ const CouncilSchema = new mongoose.Schema({
         type:[String],
         enum:Stages,
         default:[Stages.INTRO]
+    },
+    creator:{
+        type:UserSchema,
+        required:true
     }
 })
 

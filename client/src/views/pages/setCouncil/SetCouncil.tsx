@@ -1,5 +1,9 @@
 import axios from "axios";
-import { useAppDispatch } from "../../../control/hooks";
+import {
+  useAppDispatch,
+  useGetUser,
+  useIsLogged,
+} from "../../../control/hooks";
 import { setCouncilAsync } from "../../../control/redux/councilsAPI";
 import { addCouncil } from "../../../control/redux/councilsSlice";
 
@@ -11,10 +15,14 @@ console.log(stages);
 
 const SetCouncil = () => {
   const dispatch = useAppDispatch();
-
+  const isLogged = useIsLogged();
+  const user = useGetUser();
   async function handleSubmit(ev: any) {
     ev.preventDefault();
     try {
+      if (isLogged === false) throw new Error("user is no logged");
+      if(!user) throw new Error('User was not found');
+      
       let { title, description, imgs, stages } = ev.target.elements;
       console.log({ title, description, imgs, stages });
       title = title.value;
@@ -32,7 +40,12 @@ const SetCouncil = () => {
 
       // const {data} = await axios.post('/api/councils/add-council',{title, description, stages:stagesArray});
       // dispatch(addCouncil({ title, description, stages: stagesArray }));
-      dispatch(setCouncilAsync({ title, description, stages: stagesArray }))
+      dispatch(
+        setCouncilAsync({
+          council: { title, description, stages: stagesArray },
+          user,
+        })
+      );
     } catch (error) {
       console.error(error);
     }

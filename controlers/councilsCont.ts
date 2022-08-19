@@ -1,11 +1,18 @@
 import CouncilModel, { CouncilSchemaJoi } from "../model/councilModel";
+import NewsItemModel from "../model/newsModel";
 
 export async function setCouncil(req, res) {
   try {
-    const { council } = req.body;
-    console.log(council);
+    const { council, creator } = req.body;
+   
     if (!council) throw new Error("No council in body");
+    if(!creator) throw new Error('No creator in body');
+
+
+
     const { error } = CouncilSchemaJoi.validate(council);
+
+
     if (error) throw error;
     let councilDB;
     if (council._id) {
@@ -22,6 +29,11 @@ export async function setCouncil(req, res) {
     }
 
     console.log(councilDB);
+
+    await NewsItemModel.create({
+      council:councilDB,
+      creator:
+    })
 
     res.send({
       title: councilDB.title,
