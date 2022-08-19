@@ -4,6 +4,7 @@ import Joi from 'joi';
 //schemas
 import { ImgSchema, ImgSchemaJoi } from "./imgModel";
 import { UserSchema } from "../client/src/model/userModelC";
+import { UserSchemaJoi } from "./usersModel";
 
 export enum Stages {
     INTRO = 'intro',
@@ -39,7 +40,8 @@ export const CouncilSchemaJoi = Joi.object({
     title:Joi.string().required(),
     description:Joi.string(),
     imgs:Joi.array().items(ImgSchemaJoi),
-    stages:Joi.array().allow(Stages)
+    stages:Joi.array().allow(Stages),
+    creator:UserSchemaJoi
 })
 
 

@@ -7,6 +7,7 @@ export const setCouncilAsync = createAsyncThunk(
   "councils/setCouncil",
   async (council:Council, {rejectWithValue}) => {
     const response = await setCouncilToDB(council);
+    console.log(response)
     // The value we return becomes the `fulfilled` action payload
     if(response === false) rejectWithValue('error!')
     return response;

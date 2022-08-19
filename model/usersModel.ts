@@ -1,3 +1,4 @@
+import Joi from "joi";
 import mongoose from "mongoose";
 
 export interface User{
@@ -9,6 +10,18 @@ export interface User{
   picture: string,
   uid: string,
 }
+
+export const UserSchemaJoi = Joi.object({
+  email_verified: Joi.boolean(),
+  email: Joi.string(),
+  family_name: Joi.string(),
+  given_name: Joi.string(),
+  name: Joi.string(),
+  picture: Joi.string(),
+  uid: Joi.string().required(),
+  _id:Joi.any(),
+  __v:Joi.number()
+})
 
 export const UserSchema = new mongoose.Schema({
   email_verified: Boolean,

@@ -20,8 +20,10 @@ const SetCouncil = () => {
   const user = useGetUser();
 
   useEffect(() => {
-    dispatch(getUserAsync());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (isLogged === false) {
+      dispatch(getUserAsync());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleSubmit(ev: any) {
@@ -47,9 +49,7 @@ const SetCouncil = () => {
 
       // const {data} = await axios.post('/api/councils/add-council',{title, description, stages:stagesArray});
       // dispatch(addCouncil({ title, description, stages: stagesArray }));
-      dispatch(
-        setCouncilAsync({ title, description, stages: stagesArray })
-      );
+      dispatch(setCouncilAsync({ title, description, stages: stagesArray }));
     } catch (error) {
       console.error(error);
     }
