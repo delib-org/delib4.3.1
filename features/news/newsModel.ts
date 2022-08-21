@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-import { CouncilSchema, Stages } from "./councilModel";
-import UserModel, { UserSchema } from "./usersModel";
+import { CouncilSchema, Stages } from "../councils/councilModel";
+import UserModel, { UserSchema } from "../users/usersModel";
 
 const NewsItemSchema = new mongoose.Schema({
     creator:{

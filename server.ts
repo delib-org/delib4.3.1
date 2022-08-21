@@ -22,10 +22,10 @@ mongoose.connect(
 });
 
 
-import usersRoute from "./routes/usersRoute";
+import usersRoute from "./features/users/usersRoute";
 app.use("/api/users", usersRoute);
 
-import councilsRoute from './routes/councilsRoute';
+import councilsRoute from './features/councils/councilsRoute';
 app.use('/api/councils', councilsRoute);
 
 

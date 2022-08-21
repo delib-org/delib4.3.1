@@ -1,4 +1,4 @@
-import UserModel, { User } from "../model/usersModel";
+import UserModel, { User } from "./usersModel";
 import jwt_decode from "jwt-decode";
 import jwt from "jwt-simple";
 

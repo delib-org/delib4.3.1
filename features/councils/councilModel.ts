@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import Joi from 'joi';
 
 //schemas
-import { ImgSchema, ImgSchemaJoi } from "./imgModel";
-import { UserSchema } from "../client/src/model/userModelC";
-import { UserSchemaJoi } from "./usersModel";
+import { ImgSchema, ImgSchemaJoi } from "../imgs/imgModel";
+import { UserSchema } from "../../client/src/model/userModelC";
+import { UserSchemaJoi } from "../users/usersModel";
 
 export enum Stages {
     INTRO = 'intro',

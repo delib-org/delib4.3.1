@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import {getCouncil, setCouncil} from '../controlers/councilsCont';
-import { getUserFroomCookie } from '../controlers/usersCont';
+import {getCouncil, setCouncil} from './councilsCont';
+import { getUserFroomCookie } from '../users/usersCont';
 
 router
 .post('/set-council', getUserFroomCookie,setCouncil)

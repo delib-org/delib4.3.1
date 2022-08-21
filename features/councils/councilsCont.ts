@@ -1,6 +1,6 @@
-import CouncilModel, { CouncilSchemaJoi, Stages } from "../model/councilModel";
-import NewsItemModel from "../model/newsModel";
-import { getUserFromDB } from "./usersCont";
+import CouncilModel, { CouncilSchemaJoi, Stages } from "./councilModel";
+import NewsItemModel from "../news/newsModel";
+import { getUserFromDB } from "../users/usersCont";
 
 export async function setCouncil(req, res) {
   try {

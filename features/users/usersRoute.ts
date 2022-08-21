@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import {getUser, getUserFroomCookie, loginUser} from '../controlers/usersCont';
+import {getUser, getUserFroomCookie, loginUser} from './usersCont';
 
 router
 .post('/login',loginUser)
