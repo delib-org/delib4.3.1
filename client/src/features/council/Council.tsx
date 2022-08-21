@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../../control/hooks";
-import { getCouncilAsync } from "../../../control/redux/councils/councilsAPI";
-import { getUserAsync } from "../../../control/redux/user/usersAPI";
+} from "../../control/hooks";
+import { getCouncilAsync } from "../../control/redux/councils/councilsAPI";
+import { getUserAsync } from "../../control/redux/user/usersAPI";
 import Chat from "./chat/Chat";
 
 const Council = () => {

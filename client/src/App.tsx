@@ -6,8 +6,8 @@ import { Provider } from "react-redux";
 // import your route components too
 import Main from "./views/pages/main/Main";
 import Page404 from "./views/pages/404/Page404";
-import Council from "./views/pages/council/Council";
-import SetCouncil from "./views/pages/setCouncil/SetCouncil";
+import Council from "./features/council/Council";
+import SetCouncil from "./features/setCouncil/SetCouncil";
 import Home from "./views/pages/home/Home";
 
 import "./views/styles/app.scss";

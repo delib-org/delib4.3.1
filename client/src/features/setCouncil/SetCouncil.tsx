@@ -3,12 +3,12 @@ import {
   useAppDispatch,
   useGetUser,
   useIsLogged,
-} from "../../../control/hooks";
-import { setCouncilAsync } from "../../../control/redux/councils/councilsAPI";
-import { getUserAsync } from "../../../control/redux/user/usersAPI";
+} from "../../control/hooks";
+import { setCouncilAsync } from "../../control/redux/councils/councilsAPI";
+import { getUserAsync } from "../../control/redux/user/usersAPI";
 
 //models
-import { Stages } from "../../../model/stagesModelC";
+import { Stages } from "../../model/stagesModelC";
 
 const stages = Object.values(Stages);
 
@@ -32,6 +32,7 @@ const SetCouncil = () => {
       if (!user) throw new Error("User was not found");
 
       let { title, description, imgs, stages } = ev.target.elements;
+      console.log(imgs)
 
       title = title.value;
       description = description.value;

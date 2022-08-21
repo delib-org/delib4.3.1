@@ -1,7 +1,7 @@
 import { useIsLogged } from "../../../control/hooks";
 
 //components
-import HomeIntro from "../home/HomeIntro";
+import HomeIntro from "./HomeIntro";
 import HomeMain from "./HomeMain";
 
 const Home = () => {
