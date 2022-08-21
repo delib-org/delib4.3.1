@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {
   useAppDispatch,
-  useIsLogged,
   useAppSelector,
 } from "../../../control/hooks";
 import { getCouncilAsync } from "../../../control/redux/councils/councilsAPI";

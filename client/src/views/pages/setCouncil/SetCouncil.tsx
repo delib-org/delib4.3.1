@@ -5,7 +5,6 @@ import {
   useIsLogged,
 } from "../../../control/hooks";
 import { setCouncilAsync } from "../../../control/redux/councils/councilsAPI";
-import { addCouncil } from "../../../control/redux/councils/councilsSlice";
 import { getUserAsync } from "../../../control/redux/user/usersAPI";
 
 //models

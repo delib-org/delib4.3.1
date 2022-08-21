@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../../model/store";
+import {  createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../../model/store";
 import { User, UserSchema } from "../../../model/userModelC";
 import { getUserAsync } from "./usersAPI";
 

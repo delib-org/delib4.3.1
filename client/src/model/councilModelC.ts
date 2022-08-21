@@ -1,4 +1,4 @@
-import Joi, { required } from "joi";
+import Joi from "joi";
 
 import { Img, ImgSchema } from "./imgModelC";
 import { Stages } from "./stagesModelC";
