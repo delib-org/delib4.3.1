@@ -65,3 +65,18 @@ export async function getCouncil(req:any, res:any){
     res.send({ error: error.message });
   }
 }
+
+export async function getCouncils(req:any, res:any){
+  try {
+   
+
+    const councilsDB = await CouncilModel.find({});
+    if(!councilsDB) throw new Error(`Couldnt find councils in DB`);
+    res.send({councils:councilsDB});
+
+  } catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+  }
+}
+

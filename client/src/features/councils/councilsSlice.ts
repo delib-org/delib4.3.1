@@ -1,12 +1,12 @@
 import {  createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RootState} from "../../../model/store";
+import { RootState} from "../../model/store";
 
-import { CouncilSchema, Council } from "../../../model/councilModelC";
-import { updateArrayBy_ID } from "../../helpers";
+import { CouncilSchema, Council } from "../council/councilModelC";
+import { updateArrayBy_ID } from "../../control/helpers";
 
 //api
-import { getCouncilAsync, setCouncilAsync } from "./councilsAPI";
+import { getCouncilAsync, setCouncilAsync,getCouncilsAsync } from "./councilsAPI";
 
 export interface CouncilsState {
   councils: Council[];
@@ -62,16 +62,30 @@ export const councilsSlice = createSlice({
       })
       .addCase(getCouncilAsync.rejected, (state) => {
         state.status = "failed";
+      })
+      .addCase(getCouncilsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getCouncilsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        console.log(action.payload);
+        if (action.payload)
+          state.councils =  action.payload;
+      })
+      .addCase(getCouncilsAsync.rejected, (state) => {
+        state.status = "failed";
       });
   },
 });
+
+
 
 export const { addCouncil } = councilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const councils = (state: RootState) => state.councils.councils;
+export const councilsSelect = (state: RootState) => state.councils.councils;
 
 
 // We can also write thunks by hand, which may contain both sync and async logic.

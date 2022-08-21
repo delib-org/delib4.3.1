@@ -4,11 +4,11 @@ import {
   useGetUser,
   useIsLogged,
 } from "../../control/hooks";
-import { setCouncilAsync } from "../../control/redux/councils/councilsAPI";
-import { getUserAsync } from "../../control/redux/user/usersAPI";
+import { setCouncilAsync } from "../councils/councilsAPI";
+import { getUserAsync } from "../user/usersAPI";
 
 //models
-import { Stages } from "../../model/stagesModelC";
+import { Stages } from "../council/chat/stagesModelC";
 
 const stages = Object.values(Stages);
 

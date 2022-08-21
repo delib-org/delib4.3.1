@@ -1,14 +1,16 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   useAppDispatch,
   useAppSelector,
+  useIsLogged,
 } from "../../control/hooks";
-import { getCouncilAsync } from "../../control/redux/councils/councilsAPI";
-import { getUserAsync } from "../../control/redux/user/usersAPI";
+import { getCouncilAsync } from "../councils/councilsAPI";
+import { getUserAsync } from "../user/usersAPI";
 import Chat from "./chat/Chat";
 
 const Council = () => {
+  const isLogged = useIsLogged();
   const dispatch = useAppDispatch();
   const { councilId } = useParams();
   const council = useAppSelector((state) =>
@@ -19,17 +21,17 @@ const Council = () => {
   useEffect(() => {
     if (councilId && councilId.length === 24)
       dispatch(getCouncilAsync(councilId));
+
+    if (!isLogged) dispatch(getUserAsync());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [councilId]);
 
-  useEffect(() => {
-    dispatch(getUserAsync());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [councilId]);
+
   return (
     <div>
       <h1>Council: {council ? council.title : councilId}</h1>
-      {council && councilId?<Chat council={council} />:null}
+      {council && councilId ? <Chat council={council} /> : null}
     </div>
   );
 };

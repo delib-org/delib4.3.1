@@ -1,5 +1,5 @@
-import { Council } from "./councilModelC";
-import { User } from "./userModelC";
+import { Council } from "../councilModelC";
+import { User } from "../../user/userModelC";
 
 export interface Message{
     message:string;

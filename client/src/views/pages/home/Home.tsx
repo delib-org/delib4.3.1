@@ -1,4 +1,6 @@
-import { useIsLogged } from "../../../control/hooks";
+import { useEffect } from "react";
+import { useAppDispatch, useIsLogged } from "../../../control/hooks";
+import { getUserAsync } from "../../../features/user/usersAPI";
 
 //components
 import HomeIntro from "./HomeIntro";
@@ -6,11 +8,12 @@ import HomeMain from "./HomeMain";
 
 const Home = () => {
   const isLogged = useIsLogged();
-  return (
-    <div className="page">
-      {isLogged?<HomeMain/>:<HomeIntro/>}
-    </div>
-  )
-}
+  const dispatch = useAppDispatch();
 
-export default Home
+  useEffect(() => {
+    if (!isLogged) dispatch(getUserAsync());
+  }, [dispatch,isLogged]);
+  return <div className="page">{isLogged ? <HomeMain /> : <HomeIntro />}</div>;
+};
+
+export default Home;

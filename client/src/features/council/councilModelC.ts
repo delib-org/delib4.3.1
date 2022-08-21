@@ -1,8 +1,8 @@
 import Joi from "joi";
 
-import { Img, ImgSchema } from "./imgModelC";
-import { Stages } from "./stagesModelC";
-import { User } from "./userModelC";
+import { Img, ImgSchema } from "../imgs/imgModelC";
+import { Stages } from "./chat/stagesModelC";
+import { User } from "../user/userModelC";
 
 export interface Council {
   _id?: string;

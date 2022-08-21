@@ -2,7 +2,7 @@ import YouTube from "react-youtube";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useAppDispatch } from "../../../control/hooks";
-import { setUser } from "../../../control/redux/user/userSlice";
+import { setUser } from "../../../features/user/userSlice";
 import { Link } from "react-router-dom";
 
 const HomeIntro = () => {

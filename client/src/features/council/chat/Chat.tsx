@@ -3,8 +3,8 @@ import {
   useAppSelector,
   useGetUser,
 } from "../../../control/hooks";
-import { addMessage } from "../../../control/redux/councils/messagesSlice";
-import { Council } from "../../../model/councilModelC";
+import { addMessage } from "./messagesSlice";
+import { Council } from "../councilModelC";
 interface ChatProps {
   council: Council;
 }

@@ -1,12 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import userReducer from '../control/redux/user/userSlice';
-import councilsSlice from '../control/redux/councils/councilsSlice';
-import messagesSlice from '../control/redux/councils/messagesSlice';
+
+import userReducer from '../features/user/userSlice';
+import councilsSlice from '../features/councils/councilsSlice';
+import messagesSlice from '../features/council/chat/messagesSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     user:userReducer,
     councils:councilsSlice,
     messages:messagesSlice

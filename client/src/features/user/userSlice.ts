@@ -1,6 +1,5 @@
 import {  createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../../model/store";
-import { User, UserSchema } from "../../../model/userModelC";
+import { User, UserSchema } from "./userModelC";
 import { getUserAsync } from "./usersAPI";
 
 export interface UserState {
@@ -59,7 +58,7 @@ export const { setUser } = userSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.counter.value;
+
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

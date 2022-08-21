@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { User } from "../../../model/userModelC";
+import { User } from "./userModelC";
 
 export const getUserAsync = createAsyncThunk(
   "user/getUser",

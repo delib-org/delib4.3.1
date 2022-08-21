@@ -1,15 +1,14 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {  createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RootState, AppThunk } from "../../../model/store";
+import { RootState } from "../../../model/store";
 
-import { CouncilSchema, Council } from "../../../model/councilModelC";
-import { uid, updateArrayBy_ID } from "../../helpers";
+import {  Council } from "../councilModelC";
+import { uid, updateArrayBy_ID } from "../../../control/helpers";
 
-//api
-import { getCouncilAsync, setCouncilAsync } from "./councilsAPI";
 
-import { Message } from "../../../model/messageModel";
-import { User } from "../../../model/userModelC";
+
+import { Message } from "./messageModel";
+import { User } from "../../user/userModelC";
 export interface Messages {
   messages: Message[];
   status: "idle" | "loading" | "failed";

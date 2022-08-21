@@ -3,7 +3,7 @@ import Joi from 'joi';
 
 //schemas
 import { ImgSchema, ImgSchemaJoi } from "../imgs/imgModel";
-import { UserSchema } from "../../client/src/model/userModelC";
+import { UserSchema } from "../../client/src/features/user/userModelC";
 import { UserSchemaJoi } from "../users/usersModel";
 
 export enum Stages {
