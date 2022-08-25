@@ -7,7 +7,7 @@ const port: number = 4000;
 import http from 'http';
 const server = http.createServer(app);
 import { Server } from "socket.io";
-const io = new Server(server);
+export const io = new Server(server);
 
 //cont
 import socketMain from './features/socket/socket'
