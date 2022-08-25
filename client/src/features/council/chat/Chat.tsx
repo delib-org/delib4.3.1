@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   useAppDispatch,
   useAppSelector,
@@ -6,7 +7,7 @@ import {
 import { addMessage } from "./messagesSlice";
 import { Council } from "../councilModelC";
 import { sendMessage } from "./messagesCont";
-import { useEffect } from "react";
+
 import { socket } from "../../../";
 
 interface ChatProps {
@@ -20,6 +21,7 @@ const Chat = ({ council }: ChatProps) => {
     state.messages.messages.filter((msg) => msg.council._id === council._id)
   );
 
+  console.log(user)
   useEffect(() => {
     socket.emit("join-room", council._id);
 
@@ -41,7 +43,7 @@ const Chat = ({ council }: ChatProps) => {
 
       if (user && council && council._id !== undefined)
         dispatch(addMessage({ message, council, creator: user }));
-      sendMessage(message, council);
+      sendMessage(message, council, user);
     } catch (error) {
       console.error(error);
     }
