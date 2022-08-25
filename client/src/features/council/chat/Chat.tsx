@@ -5,6 +5,9 @@ import {
 } from "../../../control/hooks";
 import { addMessage } from "./messagesSlice";
 import { Council } from "../councilModelC";
+import { sendMessage } from "./messagesCont";
+
+
 interface ChatProps {
   council: Council;
 }
@@ -20,9 +23,10 @@ const Chat = ({ council }: ChatProps) => {
     ev.preventDefault();
     try {
       const message = ev.target.elements.message.value;
-      console.log(message);
-      if (user && council)
+      
+      if (user && council && (council._id !== undefined))
         dispatch(addMessage({ message, council, creator: user }));
+        sendMessage(message,council);
     } catch (error) {
       console.error(error);
     }

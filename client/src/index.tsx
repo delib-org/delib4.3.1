@@ -4,7 +4,10 @@ import { Provider } from 'react-redux';
 import { store } from './model/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { io } from "socket.io-client";
 import './index.css';
+
+export const socket = io();
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

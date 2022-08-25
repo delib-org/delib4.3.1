@@ -11,6 +11,7 @@ export interface User {
 }
 
 export const UserSchema = Joi.object({
+  _id:Joi.string(),
   email_verified: Joi.boolean(),
   email: Joi.string(),
   family_name: Joi.string(),
@@ -18,4 +19,5 @@ export const UserSchema = Joi.object({
   name: Joi.string(),
   picture: Joi.string(),
   uid: Joi.string(),
+  __v:Joi.number()
 });

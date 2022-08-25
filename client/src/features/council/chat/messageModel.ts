@@ -5,7 +5,7 @@ export interface Message{
     message:string;
     _id?:string;
     isTemp:boolean;
-    time:Date;
+    time:number;
     council:Council;
     creator:User;
 }

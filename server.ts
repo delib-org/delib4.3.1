@@ -4,6 +4,14 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config' 
 const app = express();
 const port: number = 4000;
+import http from 'http';
+const server = http.createServer(app);
+import { Server } from "socket.io";
+const io = new Server(server);
+
+//cont
+import socketMain from './features/socket/socket'
+
 
 app.use(cookieParser());
 
@@ -21,6 +29,8 @@ mongoose.connect(
   console.error(err.message)
 });
 
+io.on('connection', socketMain);
+
 
 import usersRoute from "./features/users/usersRoute";
 app.use("/api/users", usersRoute);
@@ -33,6 +43,6 @@ app.use('/api/councils', councilsRoute);
 
 
 
-app.listen(port, () => {
-  return console.log(`🔥 Server is listening at http://localhost:${port} ⚡`);
+server.listen(port, () => {
+  return console.log(`🔥 Server is listening at http://localhost:*${port} ⚡`);
 });

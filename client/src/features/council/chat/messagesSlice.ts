@@ -42,13 +42,15 @@ export const messagesSlice = createSlice({
         const { creator, council, message } = action.payload;
         const newMessage: Message = {
           message,
-          time: new Date(),
+          time: new Date().getTime(),
           creator,
           council,
           isTemp: true,
           _id: uid(),
         };
+        console.dir(newMessage)
         state.messages = updateArrayBy_ID(state.messages, newMessage);
+        console.log(state.messages)
       } catch (error) {
         console.error(error);
       }
