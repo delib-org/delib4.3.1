@@ -2,7 +2,6 @@ import {  createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../../model/store";
 
-import {  Council } from "../councilModelC";
 import { uid, updateArrayBy_ID } from "../../../control/helpers";
 
 

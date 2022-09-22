@@ -7,7 +7,7 @@ import {
 } from "../../control/hooks";
 import { getCouncilAsync } from "../councils/councilsAPI";
 import { getUserAsync } from "../user/usersAPI";
-import Chat from "./chat/Chat";
+import Chat from "./chat/view/Chat";
 
 const Council = () => {
   const isLogged = useIsLogged();

@@ -3,12 +3,12 @@ import {
   useAppDispatch,
   useAppSelector,
   useGetUser,
-} from "../../../control/hooks";
-import { addMessage } from "./messagesSlice";
-import { Council } from "../councilModelC";
-import { sendMessage } from "./messagesCont";
+} from "../../../../control/hooks";
+import { addMessage } from "../messagesSlice";
+import { Council } from "../../councilModelC";
+import { sendMessage } from "../messagesCont";
 
-import { socket } from "../../../";
+import { socket } from "../../../..";
 
 interface ChatProps {
   council: Council;
