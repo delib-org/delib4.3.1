@@ -6,6 +6,6 @@ export interface Message{
     _id?:string;
     isTemp:boolean;
     time:number;
-    council:Council;
+    councilId:string;
     creator:User;
 }

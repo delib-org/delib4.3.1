@@ -18,22 +18,30 @@ const Chat = ({ council }: ChatProps) => {
   const user = useGetUser();
   const dispatch = useAppDispatch();
   const messages = useAppSelector((state) =>
-    state.messages.messages.filter((msg) => msg.council._id === council._id)
+    state.messages.messages.filter((msg) => msg.councilId === council._id)
   );
 
-  console.log(user)
+  console.log(user);
   useEffect(() => {
     socket.emit("join-room", council._id);
 
-    socket.on('message',msg=>{
-    
-      console.log(msg)
-    })
+    socket.on("message", (msg) => {
+      console.log(msg);
+      if (council && council._id && user)
+        dispatch(
+          addMessage({
+            message: msg.message,
+            councilId: council._id,
+            creator: msg.user,
+          })
+        );
+    });
 
     return () => {
       socket.emit("leave-room", council._id);
-      socket.off('message');
+      socket.off("message");
     };
+    // eslint-disable-next-line
   }, []);
 
   function handleSendMessage(ev: any) {
@@ -41,9 +49,10 @@ const Chat = ({ council }: ChatProps) => {
     try {
       const message = ev.target.elements.message.value;
 
-      if (user && council && council._id !== undefined)
-        dispatch(addMessage({ message, council, creator: user }));
-      sendMessage(message, council, user);
+      if (user && council && council._id !== undefined) {
+        dispatch(addMessage({ message, councilId: council._id, creator: user }));
+        sendMessage(message, council._id, user);
+      }
     } catch (error) {
       console.error(error);
     }

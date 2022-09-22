@@ -34,17 +34,17 @@ export const messagesSlice = createSlice({
       state,
       action: PayloadAction<{
         message: string;
-        council: Council;
+        councilId: string;
         creator: User;
       }>
     ) => {
       try {
-        const { creator, council, message } = action.payload;
+        const { creator, councilId, message } = action.payload;
         const newMessage: Message = {
           message,
           time: new Date().getTime(),
           creator,
-          council,
+          councilId,
           isTemp: true,
           _id: uid(),
         };

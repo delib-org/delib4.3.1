@@ -42,7 +42,7 @@ export const userSlice = createSlice({
       })
       .addCase(getUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        if(action.payload){
+        if(action.payload && action.payload.uid){
           state.user = action.payload;
         }
         
